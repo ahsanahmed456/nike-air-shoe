@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { useGLTF, OrbitControls,Html } from '@react-three/drei';
+import { ContactShadows, Environment, useGLTF, OrbitControls } from "@react-three/drei"
 import { proxy, snapshot } from 'valtio';
 import {HexColorPicker} from 'react-colorful';
 import "./App.css"
@@ -84,8 +84,9 @@ function App() {
         <spotLight intensity={0.3} position={[5, 20, 20]} />
       <Suspense fallback={null}>
         <Model colorm={colorm}/>
+        <ContactShadows rotation-x={Math.PI / 2} position={[0, -0.8, 0]} opacity={0.25} width={10} height={10} blur={2} far={1} />
       </Suspense>
-      <OrbitControls/>
+      <OrbitControls minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} enableZoom={false} enablePan={false} />
     </Canvas>:""}
     </>
    );
